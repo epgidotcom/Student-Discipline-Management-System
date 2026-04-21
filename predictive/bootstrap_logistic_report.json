@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-04-10T08:35:11.820701+00:00",
+  "mode": "bootstrap_distillation_from_gbm",
+  "input_gbm_model": "C:\\Users\\Fitzgerald Larido\\Desktop\\Fitz\\UNIVERSITY\\PROJECT 1 AND 2 ALL FILES\\Web-Based-Student-Discipline-Management-System-main\\SDMS\\predictive\\gradient_boosting_model.pkl",
+  "input_label_encoders": "C:\\Users\\Fitzgerald Larido\\Desktop\\Fitz\\UNIVERSITY\\PROJECT 1 AND 2 ALL FILES\\Web-Based-Student-Discipline-Management-System-main\\SDMS\\predictive\\label_encoders.pkl",
+  "output_logistic_model": "C:\\Users\\Fitzgerald Larido\\Desktop\\Fitz\\UNIVERSITY\\PROJECT 1 AND 2 ALL FILES\\Web-Based-Student-Discipline-Management-System-main\\SDMS\\predictive\\logistic_repeat_model.pkl",
+  "feature_order": [
+    "offense_id",
+    "description",
+    "sanction",
+    "evidence",
+    "status",
+    "active",
+    "incident_year",
+    "incident_month",
+    "incident_day",
+    "incident_dayofweek"
+  ],
+  "sample_size": 12000,
+  "random_state": 42,
+  "gbm_probability_mean": 0.48404072351599986,
+  "gbm_probability_std": 0.32220633239216995,
+  "distilled_positive_rate": 0.46358333333333335,
+  "note": "Bootstrap model for immediate integration/testing only. Retrain with real labeled data as soon as sufficient records exist."
+}

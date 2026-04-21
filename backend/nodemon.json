@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "js,mjs,cjs,json",
+  "ignore": ["node_modules", "test", "../frontend/**", "../predictive/**", "../docs/**"],
+  "delay": "100ms"
+}

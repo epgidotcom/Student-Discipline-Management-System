@@ -1,0 +1,754 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global typography and baseline render settings.
+  Connected to every component rendered by App.jsx. */
+:root {
+  font-family: 'Sora', 'Trebuchet MS', 'Segoe UI', sans-serif;
+  color: #0f172a;
+  background-color: #f8fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Universal sizing model used by all page cards, forms, and tables in App.jsx. */
+* {
+  box-sizing: border-box;
+}
+
+/* Full-height root chain so AppShell and login pages can rely on min-h-screen. */
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+/* Body viewport floor for pages that do not fully fill content (for example Access Restricted). */
+body {
+  min-height: 100vh;
+}
+
+html[data-theme='dark'] body {
+  color: #e2e8f0;
+  background-color: #020617;
+}
+
+/* Shared heading class used by AppShell, cards, and public auth pages. */
+.font-display {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+/* Atmospheric background layer used by AppShell and public auth screens. */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(20, 184, 166, 0.2), transparent 34%),
+    radial-gradient(circle at 82% 5%, rgba(245, 158, 11, 0.24), transparent 28%),
+    linear-gradient(160deg, #f8fafc 0%, #f1f5f9 48%, #eff6ff 100%);
+}
+
+html[data-theme='dark'] .ambient-bg {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(45, 212, 191, 0.14), transparent 34%),
+    radial-gradient(circle at 82% 5%, rgba(251, 191, 36, 0.12), transparent 28%),
+    linear-gradient(160deg, #020617 0%, #0f172a 50%, #111827 100%);
+}
+
+html[data-theme='dark'] .section-card,
+html[data-theme='dark'] .kpi-card {
+  border-color: #334155;
+  background: rgba(15, 23, 42, 0.78);
+  box-shadow: 0 8px 22px rgba(2, 6, 23, 0.34);
+}
+
+/* Appeals list cards should follow section-card dark styling */
+html[data-theme='dark'] .appeal-card {
+  border-color: #334155;
+  background: rgba(15, 23, 42, 0.78);
+  box-shadow: 0 8px 22px rgba(2, 6, 23, 0.34);
+}
+
+html[data-theme='dark'] .appeal-card .text-slate-900,
+html[data-theme='dark'] .appeal-card .text-slate-800,
+html[data-theme='dark'] .appeal-card .text-slate-700 {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme='dark'] .appeal-card .text-slate-600,
+html[data-theme='dark'] .appeal-card .text-slate-500 {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme='dark'] .appeal-card input,
+html[data-theme='dark'] .appeal-card button,
+html[data-theme='dark'] .appeal-card textarea {
+  border-color: #334155;
+  background: #0b1220;
+  color: #f1f5f9;
+}
+
+html[data-theme='dark'] .section-card-title,
+html[data-theme='dark'] .kpi-value {
+  color: #f8fafc;
+}
+
+html[data-theme='dark'] .section-card-description,
+html[data-theme='dark'] .kpi-label,
+html[data-theme='dark'] .kpi-hint {
+  color: #cbd5e1;
+}
+
+html[data-theme='dark'] .section-card .text-slate-900,
+html[data-theme='dark'] .section-card .text-slate-800,
+html[data-theme='dark'] .section-card .text-slate-700 {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme='dark'] .section-card .text-slate-600,
+html[data-theme='dark'] .section-card .text-slate-500,
+html[data-theme='dark'] .section-card .text-slate-400 {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme='dark'] .section-card input,
+html[data-theme='dark'] .section-card select,
+html[data-theme='dark'] .section-card textarea {
+  border-color: #334155;
+  background: #0b1220;
+  color: #f1f5f9;
+}
+
+/* Make common light-background utilities dark within section cards (empty states, panels) */
+html[data-theme='dark'] .section-card .bg-white,
+html[data-theme='dark'] .section-card .bg-slate-50,
+html[data-theme='dark'] .section-card .bg-slate-100 {
+  background: #0b1220 !important;
+}
+
+/* Also prefer dark backgrounds for elements inside appeal cards */
+html[data-theme='dark'] .appeal-card .bg-white,
+html[data-theme='dark'] .appeal-card .bg-slate-50,
+html[data-theme='dark'] .appeal-card .bg-slate-100 {
+  background: #0b1220 !important;
+}
+
+html[data-theme='dark'] .section-card select option {
+  background: #0b1220;
+  color: #f1f5f9;
+}
+
+html[data-theme='dark'] .section-card button {
+  border-color: #334155;
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+html[data-theme='dark'] .section-card button:hover {
+  background: #1e293b;
+}
+
+/* Students page table header baseline to avoid bright header contrast in dark theme. */
+.student-table-head {
+  background: #f8fafc;
+  color: #334155;
+}
+
+/* Students page primary actions (Add Student and Batch Upload). */
+.student-primary-btn {
+  background: #059669;
+  border: 1px solid #059669;
+  color: #ffffff;
+}
+
+.student-primary-btn:hover {
+  background: #047857;
+  border-color: #047857;
+}
+
+/* Students page icon actions keep consistent sizing across themes. */
+.student-action-btn {
+  display: grid;
+  place-items: center;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.375rem;
+  border: 1px solid #cbd5e1;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.student-action-btn--view {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.student-action-btn--view:hover {
+  background: #f1f5f9;
+}
+
+.student-action-btn--edit {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #111827;
+}
+
+.student-action-btn--edit:hover {
+  background: #fbbf24;
+  border-color: #fbbf24;
+}
+
+.student-action-btn--delete {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+.student-action-btn--delete:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+
+html[data-theme='dark'] .kpi-card .kpi-icon-wrap {
+  border-color: #475569;
+  background: rgba(30, 41, 59, 0.88);
+}
+
+html[data-theme='dark'] .kpi-card.kpi-tone-blue .kpi-icon-wrap {
+  color: #93c5fd;
+}
+
+html[data-theme='dark'] .kpi-card.kpi-tone-amber .kpi-icon-wrap {
+  color: #fcd34d;
+}
+
+html[data-theme='dark'] .kpi-card.kpi-tone-cyan .kpi-icon-wrap {
+  color: #67e8f9;
+}
+
+html[data-theme='dark'] .kpi-card.kpi-tone-rose .kpi-icon-wrap {
+  color: #fda4af;
+}
+
+/* Students page dark-mode fixes for readable header and colored action icons. */
+html[data-theme='dark'] .section-card .student-table-head {
+  background: #0b1220;
+  color: #cbd5e1;
+  border-color: #334155;
+}
+
+html[data-theme='dark'] .section-card .student-primary-btn {
+  background: #059669;
+  border-color: #059669;
+  color: #ffffff;
+}
+
+html[data-theme='dark'] .section-card .student-primary-btn:hover {
+  background: #047857;
+  border-color: #047857;
+}
+
+html[data-theme='dark'] .section-card .student-action-btn--view {
+  background: #0b1220;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+html[data-theme='dark'] .section-card .student-action-btn--view:hover {
+  background: #1e293b;
+}
+
+html[data-theme='dark'] .section-card .student-action-btn--edit {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #111827;
+}
+
+html[data-theme='dark'] .section-card .student-action-btn--edit:hover {
+  background: #fbbf24;
+  border-color: #fbbf24;
+}
+
+html[data-theme='dark'] .section-card .student-action-btn--delete {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+html[data-theme='dark'] .section-card .student-action-btn--delete:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+html[data-theme='dark'] .student-single-modal-panel {
+  border-color: #334155;
+  background: #020617;
+}
+
+html[data-theme='dark'] .student-single-modal-body {
+  background: #020617;
+}
+
+html[data-theme='dark'] .student-single-modal {
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .student-single-modal .text-slate-900,
+html[data-theme='dark'] .student-single-modal .text-slate-800,
+html[data-theme='dark'] .student-single-modal .text-slate-700 {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme='dark'] .student-single-modal .text-slate-600,
+html[data-theme='dark'] .student-single-modal .text-slate-500,
+html[data-theme='dark'] .student-single-modal .text-slate-400 {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme='dark'] .student-single-modal .border-slate-100,
+html[data-theme='dark'] .student-single-modal .border-slate-200,
+html[data-theme='dark'] .student-single-modal .border-slate-300 {
+  border-color: #334155 !important;
+}
+
+html[data-theme='dark'] .student-single-modal .bg-white,
+html[data-theme='dark'] .student-single-modal .bg-slate-50,
+html[data-theme='dark'] .student-single-modal .bg-slate-100 {
+  background: #0b1220 !important;
+}
+
+html[data-theme='dark'] .student-single-modal input,
+html[data-theme='dark'] .student-single-modal select,
+html[data-theme='dark'] .student-single-modal textarea {
+  border-color: #334155;
+  background: #0b1220;
+  color: #f1f5f9;
+}
+
+html[data-theme='dark'] .student-single-modal input::placeholder,
+html[data-theme='dark'] .student-single-modal textarea::placeholder {
+  color: #94a3b8;
+}
+
+html[data-theme='dark'] .student-single-modal select option {
+  background: #0b1220;
+  color: #f1f5f9;
+}
+
+html[data-theme='dark'] .student-single-modal .student-single-secondary-btn {
+  border-color: #334155;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .student-single-modal .student-single-secondary-btn:hover {
+  background: #1e293b;
+}
+
+/* Batch-upload preview dark-mode styling in Students modal. */
+html[data-theme='dark'] .batch-upload-modal .batch-upload-card {
+  border-color: #334155;
+  background: #0f172a;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-card .text-slate-700,
+html[data-theme='dark'] .batch-upload-modal .batch-upload-card .text-slate-600,
+html[data-theme='dark'] .batch-upload-modal .batch-upload-card .text-slate-500 {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-secondary-btn {
+  border-color: #334155;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-secondary-btn:hover {
+  background: #1e293b;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-file-name {
+  color: #94a3b8 !important;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-dropzone {
+  border-color: #334155;
+  background: #0b1220;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-dropzone--active {
+  border-color: #14b8a6;
+  background: rgba(13, 148, 136, 0.16);
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-dropzone .text-slate-700,
+html[data-theme='dark'] .batch-upload-modal .batch-upload-dropzone .text-slate-500 {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-parse-errors {
+  border-color: rgba(217, 119, 6, 0.5);
+  background: rgba(146, 64, 14, 0.22);
+  color: #fcd34d;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-preview-wrap {
+  border-color: #334155;
+  background: #0f172a;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-preview-head {
+  background: #111827;
+  color: #cbd5e1;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-preview-row {
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-summary {
+  border-color: #334155;
+  background: #0f172a;
+  color: #cbd5e1;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-summary .text-rose-700 {
+  color: #fda4af !important;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-preview-row .text-rose-700 {
+  color: #fda4af !important;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-preview-row .text-emerald-700 {
+  color: #34d399 !important;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-close-btn {
+  border-color: #334155;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .batch-upload-modal .batch-upload-close-btn:hover {
+  background: #1e293b;
+}
+
+/* Violations modals are portal-mounted, so they need dedicated dark-mode selectors. */
+html[data-theme='dark'] .violation-modal-overlay {
+  background: rgba(2, 6, 23, 0.82);
+}
+
+html[data-theme='dark'] .violation-modal-panel {
+  border-color: #334155;
+  background: #0f172a;
+  color: #e2e8f0;
+  box-shadow: 0 20px 55px rgba(2, 6, 23, 0.55);
+}
+
+html[data-theme='dark'] .violation-modal-header {
+  background: linear-gradient(90deg, #0f766e, #0369a1);
+}
+
+html[data-theme='dark'] .violation-modal-close-btn {
+  color: #f8fafc;
+}
+
+html[data-theme='dark'] .violation-modal-close-btn:hover {
+  background: rgba(148, 163, 184, 0.22);
+}
+
+html[data-theme='dark'] .violation-modal-body {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .violation-modal-body .text-slate-900,
+html[data-theme='dark'] .violation-modal-body .text-slate-800,
+html[data-theme='dark'] .violation-modal-body .text-slate-700 {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme='dark'] .violation-modal-body .text-slate-600,
+html[data-theme='dark'] .violation-modal-body .text-slate-500,
+html[data-theme='dark'] .violation-modal-body .text-slate-400 {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme='dark'] .violation-modal-body .border-slate-100,
+html[data-theme='dark'] .violation-modal-body .border-slate-200,
+html[data-theme='dark'] .violation-modal-body .border-slate-300 {
+  border-color: #334155 !important;
+}
+
+html[data-theme='dark'] .violation-modal-body .bg-white,
+html[data-theme='dark'] .violation-modal-body .bg-slate-50 {
+  background: #0b1220 !important;
+}
+
+html[data-theme='dark'] .violation-modal-body input,
+html[data-theme='dark'] .violation-modal-body select,
+html[data-theme='dark'] .violation-modal-body textarea {
+  border-color: #334155;
+  background: #0b1220;
+  color: #f1f5f9;
+}
+
+html[data-theme='dark'] .violation-modal-body input::placeholder,
+html[data-theme='dark'] .violation-modal-body textarea::placeholder {
+  color: #94a3b8;
+}
+
+html[data-theme='dark'] .violation-modal-body select option {
+  background: #0b1220;
+  color: #f1f5f9;
+}
+
+html[data-theme='dark'] .violation-modal-body .violation-combobox-panel,
+html[data-theme='dark'] .violation-modal-body .violation-student-suggestions {
+  border-color: #334155;
+  background: #0b1220;
+}
+
+html[data-theme='dark'] .violation-modal-body .violation-combobox-option,
+html[data-theme='dark'] .violation-modal-body .violation-student-suggestion-option {
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .violation-modal-body .violation-combobox-option:hover,
+html[data-theme='dark'] .violation-modal-body .violation-combobox-option--active,
+html[data-theme='dark'] .violation-modal-body .violation-student-suggestion-option:hover {
+  background: #1e293b;
+}
+
+/* Violations page: keep sticky action column readable during horizontal scrolling. */
+.violation-actions-head,
+.violation-actions-cell {
+  background: #ffffff;
+}
+
+.violation-cell-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html[data-theme='dark'] .section-card .violation-mobile-card {
+  border-color: #334155;
+  background: #0f172a;
+}
+
+html[data-theme='dark'] .section-card .violation-mobile-type,
+html[data-theme='dark'] .section-card .violation-mobile-empty {
+  border-color: #334155;
+  background: #0b1220;
+}
+
+html[data-theme='dark'] .section-card .violation-row:hover {
+  background: rgba(30, 41, 59, 0.62);
+}
+
+html[data-theme='dark'] .section-card .violation-actions-head {
+  background: #0b1220;
+}
+
+html[data-theme='dark'] .section-card .violation-actions-cell {
+  background: rgba(15, 23, 42, 0.96);
+}
+
+/* Violations page action toolbar keeps visual hierarchy consistent in both themes. */
+.section-card .violations-toolbar-btn {
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.section-card .violations-toolbar-btn--primary {
+  background: #059669;
+  border-color: #059669;
+  color: #ffffff;
+}
+
+.section-card .violations-toolbar-btn--primary:hover {
+  background: #047857;
+  border-color: #047857;
+}
+
+.section-card .violations-toolbar-btn--secondary {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+.section-card .violations-toolbar-btn--secondary:hover {
+  background: #f8fafc;
+}
+
+.section-card .violations-filter-apply-btn {
+  border-radius: 0.75rem;
+  border: 1px solid #0284c7;
+  background: #0284c7;
+  color: #ffffff;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.1rem;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.section-card .violations-filter-apply-btn:hover {
+  background: #0369a1;
+  border-color: #0369a1;
+}
+
+.section-card .violation-status-btn {
+  border: 1px solid #059669;
+  background: #059669;
+  color: #ffffff;
+  transition: background 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+}
+
+.section-card .violation-status-btn:hover {
+  background: #047857;
+  border-color: #047857;
+}
+
+.section-card .violation-status-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.section-card .violation-status-btn--icon {
+  display: grid;
+  place-items: center;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.375rem;
+  padding: 0;
+}
+
+.section-card .violation-status-btn--wide {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html[data-theme='dark'] .section-card .violations-toolbar-btn--primary {
+  background: #0d9488;
+  border-color: #0d9488;
+  color: #f8fafc;
+}
+
+html[data-theme='dark'] .section-card .violations-toolbar-btn--primary:hover {
+  background: #0f766e;
+  border-color: #0f766e;
+}
+
+html[data-theme='dark'] .section-card .violations-toolbar-btn--secondary {
+  background: #0b1220;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .section-card .violations-toolbar-btn--secondary:hover {
+  background: #1e293b;
+}
+
+html[data-theme='dark'] .section-card .violations-filter-apply-btn {
+  border-color: #0284c7;
+  background: #0284c7;
+  color: #f8fafc;
+}
+
+html[data-theme='dark'] .section-card .violations-filter-apply-btn:hover {
+  border-color: #0369a1;
+  background: #0369a1;
+}
+
+html[data-theme='dark'] .section-card .violation-status-btn {
+  border-color: #059669;
+  background: #059669;
+  color: #f8fafc;
+}
+
+html[data-theme='dark'] .section-card .violation-status-btn:hover {
+  border-color: #047857;
+  background: #047857;
+}
+
+/* Violations combobox controls prevent native-select overflow and preserve readability. */
+.violation-combobox-panel {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+.section-card .violation-combobox-option {
+  background: transparent;
+  color: #334155;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.section-card .violation-combobox-option:hover,
+.section-card .violation-combobox-option--active {
+  background: #f1f5f9;
+}
+
+html[data-theme='dark'] .section-card .violation-combobox-panel {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+html[data-theme='dark'] .section-card .violation-combobox-option {
+  color: #e2e8f0;
+  border-color: #1e293b;
+}
+
+html[data-theme='dark'] .section-card .violation-combobox-option:hover,
+html[data-theme='dark'] .section-card .violation-combobox-option--active {
+  background: #1e293b;
+}
+
+html[data-theme='dark'] .batch-upload-panel {
+  border-color: #334155;
+  background: #020617;
+}
+
+html[data-theme='dark'] .batch-upload-body {
+  background: #020617;
+}
+
+html[data-theme='dark'] .batch-upload-body .batch-upload-modal {
+  color: #e2e8f0;
+}
+
+/* Entrance animation applied to the AppShell main panel for page transitions. */
+main {
+  animation: rise-in 320ms ease-out;
+}
+
+/* Keyframes consumed by the main selector above. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

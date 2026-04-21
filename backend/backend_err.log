@@ -1,0 +1,11 @@
+(node:32212) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2026-04-17T14:46:55.584Z] [WARN] Handled application error {"requestId":"26af5de9-a5ea-4595-bbb0-253cf6db7194","code":"UNAUTHORIZED","message":"Invalid credentials"}
+[2026-04-17T14:47:00.620Z] [WARN] Handled application error {"requestId":"ace02348-88e4-4330-9f00-298a3c6150f5","code":"UNAUTHORIZED","message":"Invalid credentials"}
